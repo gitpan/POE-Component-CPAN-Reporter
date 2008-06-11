@@ -6,7 +6,7 @@ use POE qw(Wheel::Run);
 use Storable;
 use vars qw($VERSION);
 
-$VERSION = '0.01_01';
+$VERSION = '0.01_02';
 
 my $GOT_KILLFAM;
 
@@ -204,7 +204,7 @@ sub _command {
     }
     else {
 	my $perl = $args->{perl} || $self->{perl} || $^X;
-	my $code = 'my $module = shift; local \$CPAN::Config->{test_report} = 1; test( $module );';
+	my $code = 'my $module = shift; local $CPAN::Config->{test_report} = 1; test( $module );';
 	$args->{program} = [ $perl, '-MCPAN', '-e', $code, $args->{module} ];
     }
   }
@@ -394,7 +394,7 @@ sub _check_reporter {
 sub _test_module {
   my $perl = shift;
   my $module = shift;
-  my $cmdline = $perl . ' -MCPAN -e "my $module = shift; local \$CPAN::Config->{test_report} = 1; test( $module );" ' . $module;
+  my $cmdline = $perl . ' -MCPAN -e "my $module = shift; local $CPAN::Config->{test_report} = 1; test( $module );" ' . $module;
   my $job = Win32::Job->new()
     or die Win32::FormatMessage( Win32::GetLastError() );
   my $pid = $job->spawn( $perl, $cmdline )

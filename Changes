@@ -1,5 +1,11 @@
 POE::Component::CPAN::Reporter
 ==============================
 
+0.01_02 Wed Jun 11 12:40:38 BST 2008
+	- The smoke command syntax was wrong. Fixed.
+
+0.01_01	Wed Jun 11 12:17:36 BST 2008
+	- forgot to change the appdata semantics to reporterdir
+
 0.01_00 Wed Jun 11 12:01:57 BST 2008
 	- Initial public development release.

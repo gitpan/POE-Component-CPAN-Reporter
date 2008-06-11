@@ -25,4 +25,4 @@ requires:
   POE::Wheel::Run: 0
   Storable: 0
   perl: 5.000
-version: 0.01_01
+version: 0.01_02
