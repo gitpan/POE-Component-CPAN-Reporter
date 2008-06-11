@@ -6,7 +6,7 @@ use POE qw(Wheel::Run);
 use Storable;
 use vars qw($VERSION);
 
-$VERSION = '0.01_00';
+$VERSION = '0.01_01';
 
 my $GOT_KILLFAM;
 
@@ -121,7 +121,7 @@ sub _start {
 	max_run => 0,
 	_sum => 0,
   };
-  $ENV{APPDATA} = $self->{appdata} if $self->{appdata};
+  $ENV{PERL_CPAN_REPORTER_DIR} = $self->{reporterdir} if $self->{reporterdir};
   undef;
 }
 
@@ -260,7 +260,7 @@ sub _sig_child {
   $self->{stats}->{totaljobs}++;
   $self->{stats}->{avg_run} = $self->{stats}->{_sum} / $self->{stats}->{totaljobs};
   $self->{debug} = delete $job->{global_debug};
-  $ENV{APPDATA} = delete $job->{backup_env} if $job->{appdata};
+  $ENV{PERL_CPAN_REPORTER_DIR} = delete $job->{backup_env} if $job->{reporterdir};
   $kernel->post( $job->{session}, $job->{event}, $job );
   $kernel->refcount_decrement( $job->{session}, __PACKAGE__ );
   $kernel->yield( '_spawn_wheel' );
@@ -274,9 +274,9 @@ sub _spawn_wheel {
   return if $self->{paused};
   my $job = shift @{ $self->{job_queue} };
   return unless $job;
-  if ( $job->{appdata} ) {
-    $job->{backup_env} = $ENV{APPDATA};
-    $ENV{APPDATA} = $job->{appdata};
+  if ( $job->{reporterdir} ) {
+    $job->{backup_env} = $ENV{PERL_CPAN_REPORTER_DIR};
+    $ENV{PERL_CPAN_REPORTER_DIR} = $job->{reporterdir};
   }
   $self->{wheel} = POE::Wheel::Run->new(
     Program     => $job->{program},
@@ -549,7 +549,7 @@ Spawns a new component session and waits for requests. Takes the following optio
   'idle', adjust the job idle time ( default: 600 seconds ), before jobs get killed;
   'timeout', adjust the total job runtime ( default: 3600 seconds ), before a job is killed;
   'perl', which perl executable to use as a default, instead of S^X;
-  'reporter_dir', default path where CPAN::Reporter should look for it's config.ini file;
+  'reporterdir', default path where CPAN::Reporter should look for it's config.ini file;
   'no_grp_kill', set to a true value to disable process group kill;
 
 Returns a POE::Component::CPAN::Reporter object.
@@ -618,7 +618,7 @@ All the events that the component will accept (unless noted otherwise ) require 
   'session', which session the result event should go to (Default is the sender);
   'perl', which perl executable to use (Default whatever is in $^X);
   'debug', turn on or off debugging information for this particular job;
-  'reporter_dir', the path where CPAN::Reporter should look for it's config.ini file;
+  'reporterdir', the path where CPAN::Reporter should look for it's config.ini file;
 
 It is possible to pass arbitrary keys in the hash. These should be proceeded with an underscore to avoid
 possible future API clashes.
