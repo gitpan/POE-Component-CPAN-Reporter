@@ -15,6 +15,8 @@ if ( $version ) {
   exit 0;
 }
 
+$ENV{AUTOMATED_TESTING}=1;
+$ENV{PERL_MM_USE_DEFAULT}=1;
 $ENV{PERL_CPAN_REPORTER_DIR} = $appdata if $appdata;
 
 my @pending;

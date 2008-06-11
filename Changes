@@ -1,6 +1,10 @@
 POE::Component::CPAN::Reporter
 ==============================
 
+0.01_03 Wed Jun 11 15:49:31 BST 2008
+	- Added AUTOMATED_TESTING and PERL_MM_USE_DEFAULT environment
+	  variables to minireporter
+
 0.01_02 Wed Jun 11 12:40:38 BST 2008
 	- The smoke command syntax was wrong. Fixed.
 
