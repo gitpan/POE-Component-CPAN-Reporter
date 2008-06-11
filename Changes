@@ -1,6 +1,9 @@
 POE::Component::CPAN::Reporter
 ==============================
 
+0.01_04 Wed Jun 11 15:57:45 BST 2008
+	- Added eval check for the presence of Event to minireporter
+
 0.01_03 Wed Jun 11 15:49:31 BST 2008
 	- Added AUTOMATED_TESTING and PERL_MM_USE_DEFAULT environment
 	  variables to minireporter

@@ -1,5 +1,6 @@
 #!perl
 use strict;
+BEGIN { eval "use Event;"; }
 use POE qw(Component::CPAN::Reporter Component::SmokeBox::Recent);
 use Getopt::Long;
 
