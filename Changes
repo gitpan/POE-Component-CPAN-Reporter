@@ -1,6 +1,9 @@
 POE::Component::CPAN::Reporter
 ==============================
 
+0.01_05 Thu Jun 12 12:31:33 BST 2008
+	- Fixed --recenturl option in minireporter. Documented it as well.
+
 0.01_04 Wed Jun 11 15:57:45 BST 2008
 	- Added eval check for the presence of Event to minireporter
 

@@ -9,7 +9,7 @@ $|=1;
 my ($perl, $jobs, $appdata, $indices, $version, $reverse, $nogrpkill, $recenturl);
 my $debug = 0;
 
-GetOptions( 'perl=s' => \$perl, 'jobs=s' => \$jobs, 'debug' => \$debug, 'reporterdir' => \$appdata, 'indices' => \$indices, 'version' => \$version, 'reverse' => \$reverse, 'nogrpkill' => \$nogrpkill, 'recenturl' => \$recenturl );
+GetOptions( 'perl=s' => \$perl, 'jobs=s' => \$jobs, 'debug' => \$debug, 'reporterdir' => \$appdata, 'indices' => \$indices, 'version' => \$version, 'reverse' => \$reverse, 'nogrpkill' => \$nogrpkill, 'recenturl=s' => \$recenturl );
 
 if ( $version ) {
   print "$0 - version ", $POE::Component::CPAN::Reporter::VERSION, "\n";
@@ -198,6 +198,15 @@ Specify if the L<CPAN> should reload its indices before proceeding with the smok
 =item --reverse
 
 If specified reverses the processing of recently uploaded modules.
+
+=item --recenturl
+
+The URL of a CPAN mirror from which to retrieve recent uploads.
+
+Examples:
+
+  ftp://ftp.funet.fi/pub/CPAN/
+  http://www.cpan.org/
 
 =back
 
