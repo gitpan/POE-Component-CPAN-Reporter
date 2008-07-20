@@ -6,7 +6,7 @@ use POE qw(Wheel::Run);
 use Storable;
 use vars qw($VERSION);
 
-$VERSION = '0.01_06';
+$VERSION = '0.02';
 
 my $GOT_KILLFAM;
 

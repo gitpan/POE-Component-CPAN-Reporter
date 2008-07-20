@@ -5,7 +5,7 @@ author 'Chris Williams <chris@bingosnet.co.uk>';
 license 'perl';
 version_from 'lib/POE/Component/CPAN/Reporter.pm';
 abstract_from 'lib/POE/Component/CPAN/Reporter.pm';
-perl_version '5.000';
+perl_version '5.006';
 author_tests 'xt';
 no_index directory => 'xt';
 install_script 'bin/minireporter';

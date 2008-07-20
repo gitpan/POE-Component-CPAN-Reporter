@@ -1,6 +1,9 @@
 POE::Component::CPAN::Reporter
 ==============================
 
+0.02	Sun Jul 20 22:25:28 BST 2008
+	- First stable release
+
 0.01_06 Fri Jun 13 10:07:12 BST 2008
 	- Added fix suggested by Dave Golden regarding build_dir_reuse and
 	  regenerate build dirs before calling reset_tested
