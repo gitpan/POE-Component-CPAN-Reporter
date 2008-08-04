@@ -20,7 +20,14 @@ if ( $^O eq 'MSWin32' ) {
   requires 'Win32::Job' => 0;
 }
 else {
-  my $value = prompt( 'Do you want to enable optional Proc::ProcessTable support [y/N]?', 'N' );
-  requires 'Proc::ProcessTable' => 0 if $value =~ /^Y/i;
+  eval "require Proc::ProcessTable";
+  if ( $@ ) {
+    requires 'Proc::ProcessTable' => 0 if 
+       prompt( 'Do you want to enable optional Proc::ProcessTable support [y/N]?', 'N' )
+	 =~ /^Y/i;
+  }
+  else {
+     warn "You already have optional module Proc::ProcessTable installed, skipping dialogue\n";
+  }
 }
 WriteAll();
