@@ -3,10 +3,13 @@ abstract: 'Bringing the power of POE to CPAN smoke testing.'
 author:
   - 'Chris Williams <chris@bingosnet.co.uk>'
 build_requires:
+  ExtUtils::MakeMaker: 6.42
   File::Spec: 0
   Test::More: 0.47
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.76'
+generated_by: 'Module::Install version 0.91'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -14,10 +17,14 @@ meta-spec:
 name: POE-Component-CPAN-Reporter
 no_index:
   directory:
-    - xt
+    - examples
     - inc
     - t
-    - examples
+    - xt
+provides:
+  POE::Component::CPAN::Reporter:
+    file: lib/POE/Component/CPAN/Reporter.pm
+    version: 0.06
 requires:
   POE: 1.0002
   POE::Component::SmokeBox::Recent: 1
@@ -25,5 +32,7 @@ requires:
   Storable: 0
   perl: 5.6.0
 resources:
+  homepage: http://github.com/bingos/poe-component-cpan-reporter/tree
   license: http://dev.perl.org/licenses/
-version: 0.04
+  repository: git://github.com/bingos/poe-component-cpan-reporter.git
+version: 0.06
